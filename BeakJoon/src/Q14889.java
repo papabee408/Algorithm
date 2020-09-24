@@ -1,6 +1,5 @@
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.util.*;
+import java.io.*;
 
 public class Q14889 {
 	
@@ -9,31 +8,25 @@ public class Q14889 {
 	static int N;
 	static boolean[] team;
 	static int[][] data;
-	static int minScore = 999999;
+    static int minScore = 987654321;
 	
 	public static void main(String[] args)  throws Exception {
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st;
+		
 		N = stoi(br.readLine());
+		team = new boolean[N+1];
+		data = new int[N+1][N+1];
 		
-		//초기화
-		team = new boolean[N];
-		data = new int[N][N];
-		
-		//점수판 세팅
-		
-		for(int i = 0; i<N; i++) {
+		for(int i = 1; i<N+1; i++) {
 			st = new StringTokenizer(br.readLine());
-			for(int j = 0; j<N; j++) {
+			for(int j = 1; j<N+1; j++) {
 				data[i][j] = stoi(st.nextToken());
 			}
 		}
 
-		//팀 나누기 및 점수 산정
-		dfs(0, 0);
-		
-		//
+		dfs(1, 0);
 		System.out.print(minScore);
 	}
 	
@@ -44,12 +37,13 @@ public class Q14889 {
 			return;
 		}
 		
-		for(int i = start; i<N; i++) {
-			if(team[i] == false) {
+		for(int i = start; i<N+1; i++) {
+			if(team[i] != true) {
 				team[i] = true;
-				dfs(start+1, count + 1);
+				dfs(i+1, count + 1);
+				team[i] = false;
 			}
-			team[i] = false;
+			
 		}
 	}
 	
@@ -60,8 +54,8 @@ public class Q14889 {
 		int falseTeamScore = 0;
 		int trueTeamScore = 0;
 		
-		for(int i=0; i<N; i++) {
-            for(int j=0; j<N; j++) {
+		for(int i=1; i<N+1; i++) {
+            for(int j=1; j<N+1; j++) {
                 // true 면 스타트팀
                 if(team[i] && team[j])
                 	trueTeamScore += data[i][j];
