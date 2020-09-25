@@ -2,14 +2,14 @@ import java.io.*;
 
 public class Q9461 {
 	
-	static int[] cache;
+	static long[] cache;
 
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 	    int cases = Integer.parseInt(br.readLine());
 	    
-	    cache = new int[101];
+	    cache = new long[101];
 	    cache[1] = 1;
 	    cache[2] = 1;
 	    cache[3] = 1;
@@ -29,11 +29,11 @@ public class Q9461 {
 	    bw.close();
 	}
 
-	private static int getPadovan(int parseInt) {
-		if(cache[parseInt] == 0) {
-			cache[parseInt] = getPadovan(parseInt-1) + getPadovan(parseInt-5); 
+	private static long getPadovan(long parseInt) {
+		if(cache[(int) parseInt] == 0) {
+			cache[(int) parseInt] = getPadovan(parseInt-1) + getPadovan(parseInt-5); 
 		}
-		return cache[parseInt];
+		return cache[(int) parseInt];
 	}
 
 }
