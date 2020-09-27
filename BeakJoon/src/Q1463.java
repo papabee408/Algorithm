@@ -18,6 +18,7 @@ public class Q1463 {
 
 	}
 	
+	
 	private static int getCount(int num) {
 				
 		if(num == 1) {
