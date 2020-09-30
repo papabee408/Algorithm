@@ -29,11 +29,6 @@ public class Q9461 {
 	    bw.close();
 	}
 
-	private static long getPadovan(long parseInt) {
-		if(cache[(int) parseInt] == 0) {
-			cache[(int) parseInt] = getPadovan(parseInt-1) + getPadovan(parseInt-5); 
-		}
-		return cache[(int) parseInt];
-	}
+
 
 }
